@@ -3,20 +3,22 @@ package Application.model;
 public class Proventos {
 	
 	private int id;
-	private String dt_recib;
+	private String dt_recebimeto;
 	private String ativo;
-	private Double proventos;
+	private Double valorDep;
+	
 	
 	public Proventos() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Proventos(int id, String dt_recib, String ativo, Double proventos) {
+	public Proventos(int id, String dt_recebimeto, String ativo, Double valorDep) {
 		super();
 		this.id = id;
-		this.dt_recib = dt_recib;
+		this.dt_recebimeto = dt_recebimeto;
 		this.ativo = ativo;
-		this.proventos = proventos;
+		this.valorDep = valorDep;
+		
 	}
 
 	public int getId() {
@@ -27,42 +29,39 @@ public class Proventos {
 		this.id = id;
 	}
 
-	public String getDt_recib() {
-		return dt_recib;
+	
+	public String getDt_recebimeto() {
+		return dt_recebimeto;
 	}
 
-	public void setDt_recib(String dt_recib) {
-		this.dt_recib = dt_recib;
+	public void setDt_recebimeto(String dt_recebimeto) {
+		this.dt_recebimeto = dt_recebimeto;
 	}
 
 	public String getAtivo() {
 		return ativo;
 	}
 
-	public void setAtivo(String ativo) {
-		this.ativo = ativo;
+	public void setAtivo(String operacao) {
+		this.ativo = operacao;
 	}
 
-	public Double getProventos() {
-		return proventos;
+	public Double getValorDep() {
+		return valorDep;
 	}
 
-	public void setProventos(Double proventos) {
-		this.proventos = proventos;
+	public void setValorDep(Double valorDep) {
+		this.valorDep = valorDep;
 	}
+
 	
-	public void somar(double sum) {
-		this.proventos += sum;
-	}
-
 	@Override
 	public String toString() {
-		return "Id = " + id + 
-				"\nDt_recib = " + dt_recib + 
-				"\nAtivo = " + ativo + 
-				"\nProventos = " +String.format("%.2f", proventos);
+		return "id =" + id + 
+				"\nData =" + dt_recebimeto + 
+				"\nAtivo =" + ativo + 
+				"\nValor recebido =" + valorDep;
 	}
 	
 	
-
 }

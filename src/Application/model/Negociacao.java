@@ -15,7 +15,7 @@ public class Negociacao {
 	public Negociacao() {
 		// TODO Auto-generated constructor stub
 	}
-
+ 
 	
 
 	public Negociacao(int id, String dt_negociacao, int conta, String ativo, Double preco_cota, Double totalCompra,

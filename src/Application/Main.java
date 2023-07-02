@@ -5,18 +5,17 @@ import java.sql.SQLException;
 
 import Application.conection.ConexaoMySQL;
 import Application.controller.DepositosController;
-import Application.dao.DepositoDao;
+import Application.controller.NegociacaoController;
 
 public class Main {
 
 	public static void main(String[] args) throws SQLException, IOException {
 		ConexaoMySQL.create();
 	
-		//NegociacaoController.leitorArquivo();
+	//	NegociacaoController.leitorArquivo();
+		 
 		
 		
-		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  Procurando ===========================================");
-
 //		ProventosController.controleProventos();
 //		MovimentacaoController.controleProventos();
 		DepositosController.controleDepositos();

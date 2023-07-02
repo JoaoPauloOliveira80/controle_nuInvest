@@ -26,7 +26,7 @@ public class NegociacaoController {
 				+ "COMPRA-VENDA-NUINVEST\\extrato\\original/ResumoNegociacao_2023-02-28.csv";
 
 		String path = path2;
-
+ 
 		String[] dados;
 		FileReader arquivo = new FileReader(new File(path));
 
@@ -67,7 +67,7 @@ public class NegociacaoController {
 			NegociacaDao negDao = new NegociacaDao();
 
 			for (Negociacao c : negDao.getLista()) {
-				// System.out.println(c);
+				System.out.println(c);
 				// System.out.println();
 
 			}
@@ -79,34 +79,12 @@ public class NegociacaoController {
 			
 			String getAtivo = null;
 			
-			for (Negociacao n : lista) {
-				if(n.getTotalVenda() > 1) {
-					
-					getAtivo =  n.getAtivo();
-					System.out.println("Nome:" + getAtivo);
-					
-				}
-				
-			}
+//			for (Negociacao n : lista) {
+//				System.out.println(n);
+//				
+//			}
 
-			for (Negociacao n : lista) {
-
-				System.out.println(n);
-				System.out.println();
-				
-				
-
-				if (n.getAtivo().contains(getAtivo) && n.getTotalVenda() > 1) {
-					System.out.println(n);
-					System.out.println();
-					
-					compra += n.getTotalCompra();
-					venda += n.getTotalVenda();
-
-					
-
-				}
-
+			
 //
 //					Negociacao neg = new Negociacao();
 //
@@ -125,15 +103,9 @@ public class NegociacaoController {
 //				//	dao.insert(neg);
 //					
 //				
-			}
+			
 
-			System.out.println("Total de venda: " + soma);
-			System.out.println("Compra: " + compra);
-			System.out.println("Venda: " + venda);
-
-			System.out.println("Lucro: " + res);
-			// System.out.println("Resultado da compra total: " +
-			// String.format("%.02f",res));
+		
 
 		} else {
 			System.out.println("File doesn't exist or program doesn't have access " + "to the file");

@@ -20,7 +20,7 @@ public class ProventosDao {
 		List<Proventos> lista = new ArrayList<>();
 
 		Connection conn = null;
-		PreparedStatement pstm = null;
+		PreparedStatement pstm = null; 
 		ResultSet rs = null;
 
 		try {

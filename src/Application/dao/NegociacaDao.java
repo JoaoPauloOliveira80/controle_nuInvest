@@ -31,7 +31,7 @@ public class NegociacaDao {
 			if (rs.next()) {
 				while (rs.next()) {
 					Negociacao negocio = new Negociacao();
-
+ 
 					negocio.setId(rs.getInt("id"));
 					negocio.setDt_negociacao(rs.getString("dt_negociacao"));
 					negocio.setAtivo(rs.getString("ativo"));

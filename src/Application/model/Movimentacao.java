@@ -17,7 +17,7 @@ public class Movimentacao {
 		this.dt_recib = dt_recib;
 		this.ativo = ativo;
 		this.proventos = proventos;
-	}
+	} 
 
 	public int getId() {
 		return id;

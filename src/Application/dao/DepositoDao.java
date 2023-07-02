@@ -28,13 +28,13 @@ public class DepositoDao {
 			rs = pstm.executeQuery();
 
 			if (rs.next()) {
-			//	System.out.println();
-			//	System.out.println("Usuário encontrado...");
+				// System.out.println();
+				// System.out.println("Usuário encontrado...");
 				prod = new Depositos();
-				prod.setStatementNumber(number);
+				prod.setId(number);
 
 			} else {
-				
+
 				//System.out.println("Fazer NOVO registro...");
 			}
 
@@ -64,7 +64,7 @@ public class DepositoDao {
 	}
 
 	public List<Depositos> getDepositos() {
-		String sql = "SELECT * FROM depositos";
+		String sql = "SELECT * FROM depositos  order by data asc";
 
 		List<Depositos> lista = new ArrayList<>();
 
@@ -78,7 +78,7 @@ public class DepositoDao {
 
 			rs = pstm.executeQuery();
 
-			if (rs.next()) {
+			
 				while (rs.next()) {
 					Depositos p = new Depositos();
 					p.setId(rs.getInt(1));
@@ -86,14 +86,10 @@ public class DepositoDao {
 					p.setOperacao(rs.getString(3));
 					p.setDepositos(rs.getDouble(4));
 					p.setDepositante(rs.getString(5));
-					p.setStatementNumber(rs.getInt(6));
 
 					lista.add(p);
 				}
-			} else {
-				System.out.println("NÃo há depositos salvo...");
-
-			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -111,13 +107,15 @@ public class DepositoDao {
 				}
 			} catch (Exception e2) {
 				e2.printStackTrace();
-			} 
+			}
 
 		}
 
 		return lista;
 	}
 
+	
+	
 	public void insert(Depositos dep) throws SQLException {
 
 		String sql = "INSERT INTO depositos (dt_deposito, operacao, depositos, 	depositante, id) VALUES (?,?,?,?,?)";
@@ -156,6 +154,143 @@ public class DepositoDao {
 
 		}
 	}
+	
+	public List<Proventos> getProventos() {
+		String sql = "SELECT * FROM proventos  order by data asc";
+
+		List<Proventos> lista = new ArrayList<>();
+
+		Connection conn = null;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+
+		try {
+			conn = (Connection) ConexaoMySQL.create();
+			pstm = (PreparedStatement) conn.prepareStatement(sql);
+
+			rs = pstm.executeQuery();
+
+			
+				while (rs.next()) {
+					Proventos prov = new Proventos();
+					prov.setId(rs.getInt(1));
+					prov.setDt_recebimeto(rs.getString(2));
+					prov.setAtivo(rs.getString(3));
+					prov.setValorDep(rs.getDouble(4));
+					
+
+					lista.add(prov);
+					System.out.println();
+				}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstm != null) {
+					pstm.close();
+				}
+
+				if (conn != null) {
+					conn.close();
+				}
+
+				if (rs != null) {
+					rs.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+
+		}
+
+		return lista;
+	}
+	
+	public Proventos getProvId(int number) {
+		String sql = "SELECT * FROM proventos WHERE id = ?";
+		Proventos prov = null;
+		Connection conn = null;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+
+		try {
+			conn = (Connection) ConexaoMySQL.create();
+			pstm = (PreparedStatement) conn.prepareStatement(sql);
+			pstm.setInt(1, number);
+			rs = pstm.executeQuery();
+
+			if (rs.next()) {
+				// System.out.println();
+				// System.out.println("Usuário encontrado...");
+				prov = new Proventos();
+				prov.setId(number);
+
+			} else {
+
+				//System.out.println("Fazer NOVO registro...");
+			}
+
+			return prov;
+
+		} catch (Exception e) {
+			return null;
+		} finally {
+			try {
+				if (pstm != null) {
+					pstm.close();
+				}
+
+				if (conn != null) {
+					conn.close();
+				}
+
+				if (rs != null) {
+					rs.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+
+		}
+
+	}
+	public void insertProventos(Proventos prov) throws SQLException {
+
+		String sql = "INSERT INTO proventos (dt_recebimento, ativo, valor_dep, id) VALUES (?,?,?,?)";
+
+		Connection conn = null; PreparedStatement pstm = null;
+		
+		try {
+			conn = (Connection) ConexaoMySQL.create();
+			pstm = (PreparedStatement) conn.prepareStatement(sql);
+
+			pstm.setString(1, prov.getDt_recebimeto());
+			pstm.setString(2, prov.getAtivo());
+			pstm.setDouble(3, prov.getValorDep());
+			pstm.setInt(4, prov.getId());
+
+			pstm.execute();
+
+			System.out.println("Proventos armazendo com sucesso...");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstm != null) {
+					pstm.close();
+				}
+
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+
+		}
+	}
 
 	public void update(Depositos dep) throws SQLException {
 
@@ -169,7 +304,7 @@ public class DepositoDao {
 			conn = (Connection) ConexaoMySQL.create();
 			pstm = (PreparedStatement) conn.prepareStatement(sql);
 
-			pstm.setInt(1, dep.getStatementNumber());
+			// pstm.setInt(1, dep.getStatementNumber());
 			pstm.setInt(2, dep.getId());
 
 			pstm.executeUpdate();

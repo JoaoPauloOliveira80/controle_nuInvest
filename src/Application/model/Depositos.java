@@ -7,20 +7,19 @@ public class Depositos {
 	private String operacao;
 	private Double valorDep;
 	private String depositante;
-	private int statementNumber;
 	
 	public Depositos() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Depositos(int id, String dt_deposito, String operacao, Double valorDep, String depositante,int statementNumber) {
+	public Depositos(int id, String dt_deposito, String operacao, Double valorDep, String depositante) {
 		super();
 		this.id = id;
 		this.dt_deposito = dt_deposito;
 		this.operacao = operacao;
 		this.valorDep = valorDep;
 		this.depositante = depositante;
-		this.statementNumber = statementNumber;
+		
 	}
 
 	
@@ -75,22 +74,13 @@ public class Depositos {
 	 
 	
 
-	public int getStatementNumber() {
-		return statementNumber;
-	}
-
-	public void setStatementNumber(int statementNumber) {
-		this.statementNumber = statementNumber;
-	}
-
 	@Override
 	public String toString() {
 		return "Id = " + id + 
 				"\nData deposito = " + dt_deposito + 
 				"\nTipo de deposito = " + operacao + 
 				"\nDepositos = " +String.format("%.2f", valorDep)+
-				"\nNome do depositante: " + depositante +
-				"\nIdentificação da transação: "+ statementNumber;
+				"\nNome do depositante: " + depositante;
 	}
 	
 	
